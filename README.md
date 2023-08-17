@@ -109,7 +109,7 @@ To run tests, run the commands inside: queries.sql
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [X] Project 1: create animals table.
-- [ ] Project 2: query and update animals table.
+- [x] Project 2: query and update animals table.
 - [ ] Project 3: query multiple tables.
 - [ ] Project 4: add "join table" for visits.
 - [ ] Project 5: database performance audit.
