@@ -46,3 +46,8 @@ CREATE TABLE vets (id INT GENERATED ALWAYS AS IDENTITY, name VARCHAR(50), age IN
 CREATE TABLE specializations (id INT GENERATED ALWAYS AS IDENTITY, vet_id INT, species_id INT, PRIMARY KEY (id));
 ALTER TABLE specializations ADD CONSTRAINT fk_vet FOREIGN KEY (vet_id) REFERENCES vets (id);
 ALTER TABLE specializations ADD CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCES species (id);
+
+-- There is a many-to-many relationship between the tables animals and vets: an animal can visit multiple vets and one vet can be visited by multiple animals. Create a "join table" called visits to handle this relationship, it should also keep track of the date of the visit.
+CREATE TABLE visits (id INT GENERATED ALWAYS AS IDENTITY, vet_id INT, animal_id INT, date_of_visit DATE, PRIMARY KEY (id));
+ALTER TABLE visits ADD CONSTRAINT fk_vet FOREIGN KEY (vet_id) REFERENCES vets (id);
+ALTER TABLE visits ADD CONSTRAINT fk_animal FOREIGN KEY (animal_id) REFERENCES animals (id);
