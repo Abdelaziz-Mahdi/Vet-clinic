@@ -41,3 +41,8 @@ ALTER TABLE animals ADD CONSTRAINT fk_owner FOREIGN KEY (owner_id) REFERENCES ow
 -- age: integer
 -- date_of_graduation: date
 CREATE TABLE vets (id INT GENERATED ALWAYS AS IDENTITY, name VARCHAR(50), age INT, date_of_graduation DATE, PRIMARY KEY (id));
+
+-- There is a many-to-many relationship between the tables species and vets: a vet can specialize in multiple species, and a species can have multiple vets specialized in it. Create a "join table" called specializations to handle this relationship.
+CREATE TABLE specializations (id INT GENERATED ALWAYS AS IDENTITY, vet_id INT, species_id INT, PRIMARY KEY (id));
+ALTER TABLE specializations ADD CONSTRAINT fk_vet FOREIGN KEY (vet_id) REFERENCES vets (id);
+ALTER TABLE specializations ADD CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCES species (id);
