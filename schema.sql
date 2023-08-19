@@ -35,11 +35,7 @@ ALTER TABLE animals ADD COLUMN owner_id INT;
 ALTER TABLE animals ADD CONSTRAINT fk_owner FOREIGN KEY (owner_id) REFERENCES owners (id);
 
 
---Create a table named vets with the following columns:
--- id: integer (set it as autoincremented PRIMARY KEY)
--- name: string
--- age: integer
--- date_of_graduation: date
+--Create a table named vets.
 CREATE TABLE vets (id INT GENERATED ALWAYS AS IDENTITY, name VARCHAR(50), age INT, date_of_graduation DATE, PRIMARY KEY (id));
 
 -- There is a many-to-many relationship between the tables species and vets: a vet can specialize in multiple species, and a species can have multiple vets specialized in it. Create a "join table" called specializations to handle this relationship.

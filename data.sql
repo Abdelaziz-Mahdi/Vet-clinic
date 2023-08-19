@@ -29,13 +29,7 @@ VALUES ('Charmander', '2020-02-08', 0, FALSE, -11),
 
 
 
--- Insert the following data into the owners table:
--- Sam Smith 34 years old.
--- Jennifer Orwell 19 years old.
--- Bob 45 years old.
--- Melody Pond 77 years old.
--- Dean Winchester 14 years old.
--- Jodie Whittaker 38 years old.
+-- Insert data into the owners table:
 
 INSERT INTO owners (
   full_name,
@@ -68,12 +62,7 @@ UPDATE animals
 SET species_id = 2
 WHERE name LIKE '%mon';
 
--- Modify your inserted animals to include owner information (owner_id):
--- Sam Smith owns Agumon.
--- Jennifer Orwell owns Gabumon and Pikachu.
--- Bob owns Devimon and Plantmon.
--- Melody Pond owns Charmander, Squirtle, and Blossom.
--- Dean Winchester owns Angemon and Boarmon.
+-- Modify your inserted animals to include owner information (owner_id)
 
 UPDATE animals
 SET owner_id = 1
