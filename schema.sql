@@ -33,3 +33,17 @@ ALTER TABLE animals ADD CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCE
 --Add column owner_id which is a foreign key referencing the owners table
 ALTER TABLE animals ADD COLUMN owner_id INT;
 ALTER TABLE animals ADD CONSTRAINT fk_owner FOREIGN KEY (owner_id) REFERENCES owners (id);
+
+
+--Create a table named vets.
+CREATE TABLE vets (id INT GENERATED ALWAYS AS IDENTITY, name VARCHAR(50), age INT, date_of_graduation DATE, PRIMARY KEY (id));
+
+-- There is a many-to-many relationship between the tables species and vets: a vet can specialize in multiple species, and a species can have multiple vets specialized in it. Create a "join table" called specializations to handle this relationship.
+CREATE TABLE specializations (id INT GENERATED ALWAYS AS IDENTITY, vet_id INT, species_id INT, PRIMARY KEY (id));
+ALTER TABLE specializations ADD CONSTRAINT fk_vet FOREIGN KEY (vet_id) REFERENCES vets (id);
+ALTER TABLE specializations ADD CONSTRAINT fk_species FOREIGN KEY (species_id) REFERENCES species (id);
+
+-- There is a many-to-many relationship between the tables animals and vets: an animal can visit multiple vets and one vet can be visited by multiple animals. Create a "join table" called visits to handle this relationship, it should also keep track of the date of the visit.
+CREATE TABLE visits (id INT GENERATED ALWAYS AS IDENTITY, vet_id INT, animal_id INT, date_of_visit DATE, PRIMARY KEY (id));
+ALTER TABLE visits ADD CONSTRAINT fk_vet FOREIGN KEY (vet_id) REFERENCES vets (id);
+ALTER TABLE visits ADD CONSTRAINT fk_animal FOREIGN KEY (animal_id) REFERENCES animals (id);
