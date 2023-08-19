@@ -232,8 +232,37 @@ LEFT JOIN species
 ON specializations.species_id = species.id;
 
 -- List all animals that visited Stephanie Mendez between April 1st and August 30th, 2020.
+
+SELECT animals.name as animals_visited_stephanie_mendez
+FROM animals
+JOIN visits
+ON animals.id = visits.animal_id
+JOIN vets
+ON visits.vet_id = vets.id
+WHERE vets.name = 'Stephanie Mendez' AND visits.date_of_visit BETWEEN '2020-04-01' AND '2020-08-30';
+
 -- What animal has the most visits to vets?
+
+SELECT animals.name as animal_name, COUNT(visits.id) AS total_visits
+FROM animals
+JOIN visits
+ON animals.id = visits.animal_id
+GROUP BY animals.name
+ORDER BY total_visits DESC
+LIMIT 1;
+
 -- Who was Maisy Smith's first visit?
+
+SELECT animals.name as animal_name
+FROM animals
+JOIN visits
+ON animals.id = visits.animal_id
+JOIN vets
+ON visits.vet_id = vets.id
+WHERE vets.name = 'Maisy Smith'
+ORDER BY visits.date_of_visit ASC
+LIMIT 1;
+
 -- Details for most recent visit: animal information, vet information, and date of visit.
 -- How many visits were with a vet that did not specialize in that animal's species?
 -- What specialty should Maisy Smith consider getting? Look for the species she gets the most.
