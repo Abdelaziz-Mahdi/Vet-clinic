@@ -1,7 +1,7 @@
 /*Queries that provide answers to the questions from all projects.*/
 
 SELECT * FROM animals
-WHERE NAME LIKE '%mon';
+WHERE name LIKE '%mon';
 
 SELECT * FROM animals
 WHERE EXTRACT('Year' FROM DATE_OF_BIRTH) BETWEEN '2016' AND '2019';
@@ -10,13 +10,13 @@ SELECT * FROM animals
 WHERE NEUTERED = TRUE AND ESCAPE_ATTEMPTS < 3;
 
 SELECT DATE_OF_BIRTH from animals
-WHERE NAME IN ('Agumon', 'Pikachu');
+WHERE name IN ('Agumon', 'Pikachu');
 
-SELECT NAME, ESCAPE_ATTEMPTS FROM animals WHERE WEIGHT_KG > 10.5;
+SELECT name, ESCAPE_ATTEMPTS FROM animals WHERE WEIGHT_KG > 10.5;
 
 SELECT * FROM animals WHERE NEUTERED = TRUE;
 
-SELECT * FROM animals WHERE NAME != 'Gabumon';
+SELECT * FROM animals WHERE name != 'Gabumon';
 
 SELECT * FROM animals WHERE WEIGHT_KG BETWEEN 10.4 AND 17.3;
 
@@ -301,3 +301,24 @@ WHERE vets.name = 'Maisy Smith'
 GROUP BY species.name
 ORDER BY total_visits DESC
 LIMIT 1;
+
+-- Test proformanse of queries
+
+-- TEST 1
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
+CREATE INDEX animal_id_index ON visits(animal_id);
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
+DROP INDEX animal_id_index;
+
+
+-- TEST 2
+EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;.
+CREATE INDEX vet_id_index ON visits(vet_id);
+EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+DROP INDEX vet_id_index;
+
+-- TEST 3
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
+CREATE INDEX email_index ON owners(email);
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
+DROP INDEX email_index;
