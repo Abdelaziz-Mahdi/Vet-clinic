@@ -113,7 +113,7 @@ To run tests, run the commands inside: queries.sql
 - [X] Project 3: query multiple tables.
 - [X] Project 4: add "join table" for visits.
 - [X] Project 5: database performance audit.
-- [ ] Project 6: add database schema diagram.
+- [X] Project 6: add database schema diagram.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -135,7 +135,8 @@ Give a ⭐️ if you like this project!
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-- Templete used in project provided by (Microverse)!
+- Project inspired by Microverse Program.
+- Schema diagram by [dbdiagram.io](https://dbdiagram.io/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
