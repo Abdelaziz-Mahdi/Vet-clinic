@@ -47,3 +47,6 @@ ALTER TABLE specializations ADD CONSTRAINT fk_species FOREIGN KEY (species_id) R
 CREATE TABLE visits (id INT GENERATED ALWAYS AS IDENTITY, vet_id INT, animal_id INT, date_of_visit DATE, PRIMARY KEY (id));
 ALTER TABLE visits ADD CONSTRAINT fk_vet FOREIGN KEY (vet_id) REFERENCES vets (id);
 ALTER TABLE visits ADD CONSTRAINT fk_animal FOREIGN KEY (animal_id) REFERENCES animals (id);
+
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
